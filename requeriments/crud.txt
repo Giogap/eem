@@ -1,0 +1,9 @@
+BandForm
+1. addBand ok
+2. updateBand ok
+3. editBand ok
+4. getBands ok
+5. deleteBand ok
+6. cleanFields ok
+7.
+

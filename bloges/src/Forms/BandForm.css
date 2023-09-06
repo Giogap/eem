@@ -1,0 +1,55 @@
+.bandForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px; /* Ajusta el espaciado superior según tu diseño */
+  }
+  
+  .bandForm form {
+    width: 350px;
+  }
+  
+  .bandForm-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px; /* Ajusta el margen inferior entre grupos de campos */
+  }
+  
+  .input-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .input-group label {
+    text-align: right;
+    margin-right: 10px; /* Ajusta el margen derecho entre etiqueta e input */
+  }
+  
+  .input-group input {
+    width: 75%; /* Ajusta el ancho de los inputs según tu diseño */
+    border: 1px solid #CCC;
+    padding: 5px;
+  }
+  
+  table {
+    width: 100%;
+    border: 1px solid #000;
+    margin-top: 50px;
+ }
+
+ th, td {
+  width: 25%;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  padding: 0.3em;
+  caption-side: bottom;
+}
+
+  
+  

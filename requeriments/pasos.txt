@@ -1,0 +1,15 @@
+server
+1. npm init
+2. npm install mysql
+3. npm install express
+4. npm install cors
+5. npm install dotenv
+6. npm install uuid
+
+
+blog
+
+7. npx create-react-app .
+8. npm install axios
+9. npm install react-router-dom
+10. npm install react-bootstrap bootstrap
