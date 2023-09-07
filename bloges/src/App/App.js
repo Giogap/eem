@@ -4,6 +4,7 @@ import "./App.css";
 
 import Navbar from "../Navbar/Navbar";
 import Home from "../Home/Home";
+import BandForm from "../Forms/BandForm";
 
 function App() {
   return (

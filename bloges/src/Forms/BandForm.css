@@ -1,8 +1,8 @@
 .bandForm {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-top: 10px; /* Ajusta el espaciado superior según tu diseño */
+    /*align-items: center;*/
+    /*padding-top: 10px; Ajusta el espaciado superior según tu diseño */
   }
   
   .bandForm form {
