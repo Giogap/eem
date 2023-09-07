@@ -56,12 +56,6 @@ function BandForm() {
         setId(val.id);
     }
 
-    const getBands = () => {
-        Axios.get("http://localhost:3001/api/bands").then((response) => {
-            setBands(response.data);
-        });
-    };
-
     const deleteBand = (id) => {
         Axios.delete(`http://localhost:3001/api/bands/deleteBand/${id}`).then(() => {
           alert("Eliminado Ok")
@@ -75,8 +69,6 @@ function BandForm() {
         setLogo("");
         setEdit(false);
       }
-
-    useEffect(() => {getBands()}, []);
 
     return (
         <div className="bandForm">

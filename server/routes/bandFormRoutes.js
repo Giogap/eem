@@ -14,7 +14,6 @@ router.put("/updateBand", bandFormController.updateBand);
 router.delete("/deleteBand/:id", bandFormController.deleteBand);
 
 // Ruta para obtener la lista de bandas (GET)
-router.get("/getBands", bandFormController.getBands);
-router.get("/getBandsId/:id", bandFormController.getBandsId);
+
 
 module.exports = router;

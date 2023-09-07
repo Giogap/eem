@@ -48,38 +48,11 @@ const deleteBand = (req, res) => {
     });
 };
 
-const getBands = (req, res) => {
-    db.query('SELECT * FROM bands', (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send(result);
-        }
-    });
-};
 
-
-const getBandsId = (req, res) => {
-    const id = req.params.id;
-
-    db.query('SELECT * FROM bandas WHERE id = ?', id, (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            if (result.length > 0) {
-                res.send(result[0]);
-            } else {
-                res.status(404).send("Banda no encontrada");
-            }
-        }
-    });
-};
 
 module.exports = {
     createBand,
     updateBand,
     deleteBand,
-    getBands,
-    getBandsId
 };
 
