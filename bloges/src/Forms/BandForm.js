@@ -3,9 +3,7 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 import "./BandForm.css";
 
-
 function BandForm() {
-
     const [id, setId] = useState("");
     const [name, setName] = useState("");
     const [contry, setContry] = useState("");
@@ -13,14 +11,26 @@ function BandForm() {
     const [logo, setLogo] = useState("");
     const [biography, setBiography] = useState("");
     const [phone, setPhone] = useState("");
-
     const [edit, setEdit] = useState(false);
-
     const [bandsList, setBands] = useState([]);
 
+    const getBands = () => {
+        Axios.get("http://localhost:3001/api/bands")
+            .then((response) => {
+                setBands(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
 
-    const addBand = () => {
-        Axios.post("http://localhost:3001/api/bands/createBand", {
+    useEffect(() => {
+        getBands();
+    }, []); // Se ejecuta al montar el componente
+
+    const addBand = (event) => {
+        event.preventDefault();
+        Axios.post("http://localhost:3001/api/bands", {
             name: name,
             contry: contry,
             genre: genre,
@@ -29,11 +39,15 @@ function BandForm() {
             phone: phone
         }).then(() => {
             alert("Registro Banda Ok");
+            getBands();
+            cleanFields();
+        }).catch(error => {
+            console.error(error);
         });
     };
 
     const updateBand = () => {
-        Axios.put("http://localhost:3001/api/bands/updateBand", {
+        Axios.put("http://localhost:3001/api/bands", {
             name: name,
             contry: contry,
             genre: genre,
@@ -43,12 +57,15 @@ function BandForm() {
             id: id
         }).then(() => {
             alert("Actualizado Ok");
+            getBands();
             cleanFields();
+        }).catch(error => {
+            console.error(error);
         });
     };
 
     const editBand = (val) => {
-        setEdit(true);    
+        setEdit(true);
         setName(val.name);
         setContry(val.contry);
         setGenre(val.genre);
@@ -57,23 +74,29 @@ function BandForm() {
     }
 
     const deleteBand = (id) => {
-        Axios.delete(`http://localhost:3001/api/bands/deleteBand/${id}`).then(() => {
-          alert("Eliminado Ok")
+        Axios.delete(`http://localhost:3001/api/bands/${id}`).then(() => {
+            alert("Eliminado Ok");
+            getBands();
+        }).catch(error => {
+            console.error(error);
         });
     };
 
     const cleanFields = () => {
+        setId("");
         setName("");
         setContry("");
         setGenre("");
         setLogo("");
+        setBiography("");
+        setPhone("");
         setEdit(false);
-      }
+    }
 
     return (
         <div className="bandForm">
-            <form onSubmit={addBand}>
-                <h2>Agregar Banda</h2>
+            <form onSubmit={edit ? updateBand : addBand}>
+                <h2>{edit ? "Editar Banda" : "Agregar Banda"}</h2>
                 <div className="bandForm-container">
                     <div className="input-group">
                         <label>Nombre:</label> 
@@ -114,14 +137,12 @@ function BandForm() {
                             setPhone(event.target.value);
                         }} type="text" value={phone}></input>
                     </div>
-                </div>                
-                {
-                        <button onClick={addBand}>Registrar</button>
-                }
+                </div>
+                <button type="submit">{edit ? "Actualizar" : "Registrar"}</button>
             </form>
             <div className='list'>
                 <table className="table">
-                    <thead>
+                <thead>
                         <tr>
                             <th>Nombre</th>
                             <th>Pais</th>
