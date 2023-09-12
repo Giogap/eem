@@ -1,3 +1,6 @@
+CREATE DATABASE p_escarra_db;
+
+
 -- Crear tabla "users" para los usuarios registrados
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -33,7 +36,7 @@ CREATE TABLE bands (
     genre VARCHAR(100),
     logo BLOB,
     biography TEXT,
-    contact_number VARCHAR(20)
+    phone VARCHAR(20)
 );
 
 -- Crear tabla "socialmedia" para las redes sociales de las bandas
