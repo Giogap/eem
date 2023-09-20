@@ -1,8 +1,10 @@
 const express = require("express");
 const testRoute = require("./routes/testRoute");
+const cors = require("cors");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.use("/test", testRoute); // Asocia la nueva ruta
