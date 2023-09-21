@@ -7,7 +7,7 @@ import Axios from "axios";
 function BandForm() {
 
     const [name, setName] = useState("");
-    const [contry, setContry] = useState("");
+    const [country, setCountry] = useState("");
     const [genre, setGenre] = useState("");
     const [logo, setLogo] = useState("");
     const [biography, setBiography] = useState("");
@@ -19,24 +19,25 @@ function BandForm() {
     const [bandsList, setBands] = useState([]);
 
     const addBand = () => {
-        Axios.post("http://localhost:3001/createBand", {
-          name: name,
-          contry: contry,
-          genre: genre,
-          logo: logo,
-          biography: biography,
-          phone: phone,
-        }).then(() => {
-          /*getBandas();*/
-          alert("Registro Ok");
-          clean();
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('country', country);
+        formData.append('genre', genre);
+        formData.append('biography', biography);
+        formData.append('phone', phone);
+        formData.append('logo', logo);
+
+    Axios.post("http://localhost:3001/createBand", formData)
+        .then(() => {
+            alert("Registro Ok");
+            clean();
         });
     };
 
     const updateBand = () => {
         Axios.put("http://localhost:3001/updateBand", {
           name: name,
-          contry: contry,
+          country: country,
           genre: genre,
           logo: logo,
           biography: biography,
@@ -50,7 +51,7 @@ function BandForm() {
 
     const clean = () => {
         setName("");
-        setContry("");
+        setCountry("");
         setGenre("");
         setLogo("");
         setBiography("");
@@ -66,14 +67,17 @@ function BandForm() {
                         setName(event.target.value);
                     }} type="text" value={name}></input></label>
                     <label>Pais: <input onChange={(event)=>{
-                        setContry(event.target.value);
-                    }} type="text" value={contry}></input></label>
+                        setCountry(event.target.value);
+                    }} type="text" value={country}></input></label>
                     <label>Genero: <input onChange={(event)=>{
                         setGenre(event.target.value);
                     }} type="text" value={genre}></input></label>
-                    <label>Logo: <input onChange={(event)=>{
-                        setLogo(event.target.value);
-                    }} type="text" value={logo}></input></label>
+                    <label>Logo: <input type="file" accept="image/*"
+                        onChange={(event) => {
+                            const file = event.target.files[0];
+                            setLogo(file);
+                        }} />
+                    </label>
                     <label>Biografia: <input onChange={(event)=>{
                         setBiography(event.target.value);
                     }} type="text" value={biography}></input></label>

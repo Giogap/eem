@@ -5,7 +5,8 @@ server
 4. npm install cors
 5. npm install dotenv
 6. npm install uuid
-
+npm install multer
+npm install mysql2
 
 blog
 
