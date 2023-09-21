@@ -1,16 +1,15 @@
 const Band = require('../models/Band');
 
-// Crear una nueva banda
 const createBand = (req, res) => {
-  const { name, country, genre, logo, biography, contactNumber } = req.body;
-  const band = new Band(name, country, genre, logo, biography, contactNumber);
+  const { name, country, genre, logo, biography, phone } = req.body;
+
+  const band = new Band(name, country, genre, logo, biography, phone);
 
   band.save()
     .then(() => res.status(201).json({ message: 'Banda creada exitosamente' }))
     .catch(err => res.status(500).json({ error: err.message }));
 };
 
-// Obtener una banda por su ID
 const getBandById = (req, res) => {
   const { id } = req.params;
 
@@ -25,7 +24,6 @@ const getBandById = (req, res) => {
     .catch(err => res.status(500).json({ error: err.message }));
 };
 
-// Obtener todas las bandas
 const getAllBands = (req, res) => {
   Band.getAllBands()
     .then(bands => res.json(bands))
@@ -37,4 +35,3 @@ module.exports = {
   getBandById,
   getAllBands
 };
-
