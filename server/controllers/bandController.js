@@ -1,13 +1,14 @@
 const Band = require('../models/bands');
 
 const createBand = (req, res) => {
-  const { name, country, genre, logo, biography, phone } = req.body;
+  const { name, country, genre, biography, phone } = req.body;
+  const logo = req.file.filename; // Nombre del archivo de la imagen
 
   const band = new Band(name, country, genre, logo, biography, phone);
 
   band.save()
-    .then(() => res.status(201).json({ message: 'Banda creada exitosamente' }))
-    .catch(err => res.status(500).json({ error: err.message }));
+    .then(() => res.status(201).json({ message: "Banda creada exitosamente" }))
+    .catch((err) => res.status(500).json({ error: err.message }));
 };
 
 const getBandById = (req, res) => {

@@ -1,15 +1,22 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const { createBand } = require("../controllers/bandController");
+const multer = require("multer");
 
-const bandController = require('../controllers/bandController');
+// Configuración de multer para manejar los archivos
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/images"); // Aquí es donde se almacenarán las imágenes
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
 
-// Ruta para crear una nueva banda
-router.post('/createBand', bandController.createBand);
+const upload = multer({ storage: storage });
 
-// Ruta para obtener una banda por su ID
-router.get('/getBand/:id', bandController.getBandById);
-
-// Ruta para obtener todas las bandas
-router.get('/getAllBands', bandController.getAllBands);
+// Ruta para crear una banda
+router.post("/createBand", upload.single("logo"), createBand);
 
 module.exports = router;
+
