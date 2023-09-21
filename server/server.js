@@ -8,6 +8,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use(express.static('public'));
+
 app.use("/bands", bandRoute); // Asocia la nueva ruta
 app.use("/test", testRoute);
 
