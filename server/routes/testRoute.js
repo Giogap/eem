@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     if (error) {
       return res.status(500).json({ error: error.message });
     }
-    res.json({ message: 'Conexión exitosa a la base de datos' });
+    res.json({ message: 'Conexión exitosa a la base de datos', bands: results });
   });
 });
 

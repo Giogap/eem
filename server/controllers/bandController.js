@@ -1,4 +1,4 @@
-const Band = require('../models/Band');
+const Band = require('../models/bands');
 
 const createBand = (req, res) => {
   const { name, country, genre, logo, biography, phone } = req.body;
